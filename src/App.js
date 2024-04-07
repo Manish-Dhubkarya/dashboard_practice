@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom"
+import React from "react";
+import Dashboard from "./Screens/Dashboard";
+import store from "../src/Store/AdminStore"
+import { Provider } from "react-redux";
+import AdminRegistration from "./Screens/AdminRegistration";
+import AdminLogin from "./Screens/Adminlogin";
+import AdminList from "./Screens/AdminList";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Provider store={store}>
+        <Router>
+          <Routes>
+            <Route Component={AdminRegistration} path="/adminreg">
+            </Route>
+            <Route Component={AdminLogin} path="/adminlogin">
+            </Route>
+            <Route Component={AdminList} path="/adminlist">
+            </Route>
+            <Route Component={Dashboard} path="/dashboard/*"></Route>
+          </Routes>
+        </Router>
+      </Provider>
     </div>
   );
 }
-
 export default App;
